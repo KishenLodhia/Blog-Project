@@ -1,0 +1,2 @@
+import { buildLegacyTheme } from "sanity";
+
