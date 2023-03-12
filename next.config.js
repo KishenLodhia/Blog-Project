@@ -5,6 +5,7 @@ module.exports = {
     appDir: true,
   },
   images: {
+    domains: ["links.papareact.com", "cdn.sanity.io"],
     remotePatterns: [
       {
         protocol: "https",
