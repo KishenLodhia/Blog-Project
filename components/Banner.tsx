@@ -2,7 +2,9 @@ function Banner() {
   return (
     <div className="flex flex-col lg:flex-row lg:space-x-5 justify-between font-bold px-10 py-5 mb-10">
       <div>
-        <h1 className="text-7xl">Artificial Intelligence Blog</h1>
+        <h1 className="md:text-5xl lg:text-7xl text-4xl">
+          Artificial Intelligence Blog
+        </h1>
 
         <span className="font-gray font-light">
           This website is a hub for all things AI-written blogs, providing
