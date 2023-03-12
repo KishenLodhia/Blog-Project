@@ -5,6 +5,7 @@ import urlFor from "../../../../lib/urlFor";
 import { Post } from "../../../../typings";
 import { RichTextComponents } from "../../../../components/RichTextComponents";
 import { PortableText } from "@portabletext/react";
+import Head from "next/head";
 
 type Props = {
   params: {
@@ -13,6 +14,25 @@ type Props = {
 };
 
 export const revalidate = 60;
+
+export async function generateMetadata({ params: { slug } }: Props) {
+  const query = groq`
+  *[_type == 'post' && slug.current == $slug][0]
+  {
+      ...,
+      author->,
+      categories[]->
+  }
+  `;
+  const post: Post = await client.fetch(query, { slug });
+  return {
+    title: post.title,
+    description: post.description,
+    alternates: {
+      canonical: `https://ai-blog-project.vercel.app/post/${post.slug}`,
+    },
+  };
+}
 
 export async function generateStaticParams() {
   const query = groq`
